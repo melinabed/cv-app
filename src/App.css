@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.sidebar-btn {
+  font-size: 2rem;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.personal,
+.education,
+.experience {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume {
+  padding: 20px;
+  border: 2px solid black;
+  margin-left: 100px;
+}
+
+.about-me {
+  max-width: 400px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
