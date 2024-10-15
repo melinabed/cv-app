@@ -1,29 +1,15 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 
-function PersonalDetails() {
-  const [showMore, setShowMore] = useState(false);
-
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-    aboutMe: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
+function PersonalDetails({
+  formData,
+  showMore,
+  handleShowMore,
+  handleSubmit,
+  handleChange,
+}) {
   return (
     <>
-      <button className="sidebar-btn" onClick={() => setShowMore(!showMore)}>
+      <button className="sidebar-btn" onClick={handleShowMore}>
         Personal Details {showMore ? "-" : "+"}
       </button>
       {showMore && (

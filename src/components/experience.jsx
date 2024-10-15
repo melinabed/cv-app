@@ -1,28 +1,11 @@
-import { useState } from "react";
-
-function Experience() {
-  const [showMore, setShowMore] = useState(false);
-  const [formData, setFormData] = useState({
-    companyName: "",
-    position: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    description: "",
-  });
-
-  const handleShowMore = () => setShowMore(!showMore);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+/* eslint-disable react/prop-types */
+function Experience({
+  formData,
+  showMore,
+  handleShowMore,
+  handleSubmit,
+  handleChange,
+}) {
   return (
     <>
       <button className="sidebar-btn" onClick={handleShowMore}>

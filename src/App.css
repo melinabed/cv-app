@@ -4,6 +4,8 @@ body {
 
 .container {
   display: flex;
+  justify-content: space-around;
+  height: 100vh;
 }
 
 .sidebar {
@@ -21,6 +23,7 @@ body {
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
 }
 
 .personal,
@@ -28,12 +31,20 @@ body {
 .experience {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+input,
+textarea {
+  font-size: 1.25rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
 }
 
 .resume {
   padding: 20px;
   border: 2px solid black;
-  margin-left: 100px;
 }
 
 .about-me {

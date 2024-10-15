@@ -4,17 +4,67 @@ import PersonalDetails from "./components/personal";
 import Education from "./components/education";
 import Experience from "./components/experience";
 
+//Parent
 function App() {
+  const [showMore, setShowMore] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    aboutMe: "",
+    school: "",
+    degree: "",
+    eduStart: "",
+    eduEnd: "",
+    companyName: "",
+    position: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
+
+  const handleShowMore = () => setShowMore(!showMore);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   return (
     <>
       <div className="container">
         <div className="sidebar">
-          <PersonalDetails />
-          <Education />
-          <Experience />
+          <PersonalDetails
+            formData={formData}
+            showMore={showMore}
+            handleShowMore={handleShowMore}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+          />
+          <Education
+            formData={formData}
+            showMore={showMore}
+            handleShowMore={handleShowMore}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+          />
+          <Experience
+            formData={formData}
+            showMore={showMore}
+            handleShowMore={handleShowMore}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+          />
         </div>
         <div className="resume">
-          <h1>Jane Doe</h1>
+          <h1>{formData.fullName ? formData.fullName : "Jane Doe"}</h1>
           <div className="row">
             <div className="contact">
               <h2>Contact</h2>
@@ -46,7 +96,9 @@ function App() {
             <div className="work">
               <h2>Experience</h2>
               <ul>
-                <li>Worked somewhere</li>
+                <li>
+                  {formData.position ? formData.position : "Worked somewhere"}
+                </li>
                 <li>Worked somewhere</li>
                 <li>Worked somewhere</li>
                 <li>Worked somewhere</li>

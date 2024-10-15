@@ -1,26 +1,12 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 
-function Education() {
-  const [showMore, setShowMore] = useState(false);
-  const [formData, setFormData] = useState({
-    school: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-  });
-
-  const handleShowMore = () => setShowMore(!showMore);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+function Education({
+  formData,
+  showMore,
+  handleShowMore,
+  handleSubmit,
+  handleChange,
+}) {
   return (
     <>
       <button className="sidebar-btn" onClick={handleShowMore}>
@@ -48,16 +34,16 @@ function Education() {
           <label>Start Date</label>
           <input
             type="date"
-            name="startDate"
-            value={formData.startDate}
+            name="eduStart"
+            value={formData.eduStart}
             onChange={handleChange}
           />
 
           <label>End Date</label>
           <input
             type="date"
-            name="endDate"
-            value={formData.endDate}
+            name="eduEnd"
+            value={formData.eduEnd}
             onChange={handleChange}
           />
 
