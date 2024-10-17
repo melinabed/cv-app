@@ -6,6 +6,8 @@ function Education({
   handleShowMore,
   handleSubmit,
   handleChange,
+  months,
+  years,
 }) {
   return (
     <>
@@ -32,23 +34,65 @@ function Education({
           />
 
           <label>Start Date</label>
-          <input
-            type="date"
-            name="eduStart"
-            value={formData.eduStart}
+          <select
+            name="eduStartMonth"
+            id="months-selection"
+            value={formData.eduStartMonth}
             onChange={handleChange}
-          />
+          >
+            <option value="">Month</option>
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select
+            name="eduStartYear"
+            id="year-selection"
+            value={formData.eduStartYear}
+            onChange={handleChange}
+          >
+            <option value="">Year</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
 
           <label>End Date</label>
-          <input
-            type="date"
-            name="eduEnd"
-            value={formData.eduEnd}
+          <select
+            name="eduEndMonth"
+            id="months-selection"
+            value={formData.eduEndMonth}
             onChange={handleChange}
-          />
+          >
+            <option value="">Month</option>
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select
+            name="eduEndYear"
+            id="year-selection"
+            value={formData.eduEndYear}
+            onChange={handleChange}
+          >
+            <option value="">Year</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
 
-          <button>Edit</button>
-          <button type="submit">Add</button>
+          <button className="edit-btn">Edit</button>
+          <button className="add-btn" type="submit">
+            Add
+          </button>
         </form>
       )}
     </>

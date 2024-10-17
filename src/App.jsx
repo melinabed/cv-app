@@ -4,9 +4,11 @@ import PersonalDetails from "./components/personal";
 import Education from "./components/education";
 import Experience from "./components/experience";
 
-//Parent
+//Parent (ALL FOR ONE :))
 function App() {
-  const [showMore, setShowMore] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  //Sets up a formData object that can be updated with hook
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -15,17 +17,44 @@ function App() {
     aboutMe: "",
     school: "",
     degree: "",
-    eduStart: "",
-    eduEnd: "",
+    eduStartMonth: "",
+    eduStartYear: "",
+    eduEndMonth: "",
+    eduEndYear: "",
     companyName: "",
     position: "",
-    startDate: "",
-    endDate: "",
-    location: "",
+    exStartMonth: "",
+    exStartYear: "",
+    exEndMonth: "",
+    exEndYear: "",
     description: "",
   });
 
-  const handleShowMore = () => setShowMore(!showMore);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  //Function uses a loop to generate start and end years for year selection array
+  const generateYears = (startYear, endYear) => {
+    let years = [];
+    for (let year = endYear; year >= startYear; year--) {
+      years.push(year);
+    }
+    return years;
+  };
+
+  const years = generateYears(1900, 2024);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,68 +72,107 @@ function App() {
         <div className="sidebar">
           <PersonalDetails
             formData={formData}
-            showMore={showMore}
-            handleShowMore={handleShowMore}
+            showMore={activeIndex === 0}
+            handleShowMore={() => setActiveIndex(0)}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
           />
           <Education
             formData={formData}
-            showMore={showMore}
-            handleShowMore={handleShowMore}
+            showMore={activeIndex === 1}
+            handleShowMore={() => setActiveIndex(1)}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
+            months={months}
+            years={years}
           />
           <Experience
             formData={formData}
-            showMore={showMore}
-            handleShowMore={handleShowMore}
+            showMore={activeIndex === 2}
+            handleShowMore={() => setActiveIndex(2)}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
+            months={months}
+            years={years}
           />
         </div>
         <div className="resume">
-          <h1>{formData.fullName ? formData.fullName : "Jane Doe"}</h1>
-          <div className="row">
+          <header>
+            <h1>Jane Doe</h1>
+            <h3>Web Developer</h3>
+          </header>
+          <aside>
             <div className="contact">
-              <h2>Contact</h2>
-              <div className="phone">123-456-7890</div>
-              <div className="email">janedoe23@gmail.com</div>
-              <div className="address">123 Anywhere St.</div>
+              <h2>CONTACT</h2>
+              <div>123-457-7890</div>
+              <div>janedoe@gmail.com</div>
+              <div>123 Anywhere St</div>
             </div>
-            <div className="about-me">
-              <h2>About Me</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+            <div className="edu-details">
+              <h2>EDUCATION</h2>
+
+              <div>Devry</div>
+              <div>Bachelor in Technology</div>
+              <div>07/17- 01/24</div>
             </div>
-          </div>
-          <div className="row">
-            <div className="edu">
-              <h2>Education</h2>
+            <div className="skills">
+              <h2>Skills</h2>
               <ul>
-                <li>Bachelor of Design</li>
-                <li>Bachellor of Science</li>
+                <li>Communication</li>
+                <li>Attention to detail</li>
+                <li>Adaptability</li>
+                <li>Computer literacy</li>
               </ul>
+            </div>
+          </aside>
+          <main>
+            <div className="about-me">
+              <h2>ABOUT ME</h2>
+              <div>
+                <i>
+                  I&apos;m a passionate web developer with a strong background
+                  in creating responsive, user-friendly websites and web
+                  applications. I specialize in front-end development using
+                  technologies like HTML, CSS, JavaScript, and modern
+                  frameworks, with a keen eye for design and usability.
+                  Constantly learning and adapting to new tools and trends, I
+                  strive to build seamless digital experiences that not only
+                  meet business goals but also enhance user engagement.
+                </i>
+              </div>
             </div>
             <div className="work">
-              <h2>Experience</h2>
+              <h2>WORK EXPERIENCE</h2>
               <ul>
                 <li>
-                  {formData.position ? formData.position : "Worked somewhere"}
+                  <div>Jan 2022- Present</div>
+                  <div>
+                    <b>Web Developer</b>
+                  </div>
                 </li>
-                <li>Worked somewhere</li>
-                <li>Worked somewhere</li>
-                <li>Worked somewhere</li>
+                <li>
+                  <div>Jan 2022- Present</div>
+                  <div>
+                    <b>Cashier</b>
+                  </div>
+                </li>
               </ul>
             </div>
-          </div>
+            <div className="references">
+              <h2>REFERENCES</h2>
+              <div className="card">
+                <div>John Smith</div>
+                <div>276-162-1693</div>
+                <div>johnsmith83@gmail.com</div>
+              </div>
+              <br />
+              <div className="card">
+                <div>Justine Jackson</div>
+                <div>873-036-52056</div>
+                <div>justinej@gmail.com</div>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     </>

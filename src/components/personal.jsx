@@ -57,8 +57,10 @@ function PersonalDetails({
             value={formData.aboutMe}
             onChange={handleChange}
           ></textarea>
-          <button>Edit</button>
-          <button type="submit">Add</button>
+          <button className="edit-btn">Edit</button>
+          <button className="add-btn" type="submit">
+            Add
+          </button>
         </form>
       )}
     </>
