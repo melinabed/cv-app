@@ -3,10 +3,36 @@ import "./App.css";
 import PersonalDetails from "./components/personal";
 import Education from "./components/education";
 import Experience from "./components/experience";
+import Skills from "./components/skills";
 
 //Parent (ALL FOR ONE :))
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedSkill, setSelectedSkill] = useState([]);
+
+  const [skills] = useState([
+    "Adaptability",
+    "Analytical",
+    "Attention to detail",
+    "Communication",
+    "Creativity",
+    "Critical thinking",
+    "Decision-making",
+    "Leadership",
+    "Organization",
+    "Problem-Solving",
+    "Teamwork",
+    "Project Management",
+    "Work Ethic",
+    "Interpersonal Skills",
+    "Technical Proficiency",
+    "Customer Service",
+    "Conflict Resolution",
+    "Computer Literacy",
+    "Time Management",
+    "Innovation",
+    "Emotional Intelligence",
+  ]);
 
   //Sets up a formData object that can be updated with hook
   const [formData, setFormData] = useState({
@@ -66,6 +92,14 @@ function App() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleNewSkill = (e) => {
+    const newSkill = e.target.value;
+
+    if (newSkill && !selectedSkill.includes(newSkill)) {
+      setSelectedSkill([...selectedSkill, newSkill]);
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -94,6 +128,13 @@ function App() {
             handleChange={handleChange}
             months={months}
             years={years}
+          />
+          <Skills
+            skills={skills}
+            selectedSkill={selectedSkill}
+            showMore={activeIndex === 3}
+            handleShowMore={() => setActiveIndex(3)}
+            handleNewSkill={handleNewSkill}
           />
         </div>
         <div className="resume">
