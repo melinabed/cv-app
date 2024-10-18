@@ -6,6 +6,7 @@ function Skills({
   showMore,
   handleShowMore,
   handleNewSkill,
+  handleDelete,
 }) {
   return (
     <>
@@ -22,13 +23,17 @@ function Skills({
           ))}
         </select>
       )}
-      <ul>
+      <ul className="skill-list">
         {selectedSkill.map((skill) => (
-          <li key={skill}>{skill}</li>
+          <li className="skill-item" key={skill}>
+            {skill}
+            <button onClick={() => handleDelete(skill)}>Del</button>
+          </li>
         ))}
       </ul>
     </>
   );
 }
 
+//Make a delete button for each skill item
 export default Skills;

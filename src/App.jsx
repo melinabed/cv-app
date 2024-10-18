@@ -100,6 +100,10 @@ function App() {
     }
   };
 
+  const deleteSkill = (skillToRemove) => {
+    setSelectedSkill(selectedSkill.filter((skill) => skill !== skillToRemove));
+  };
+
   return (
     <>
       <div className="container">
@@ -135,11 +139,12 @@ function App() {
             showMore={activeIndex === 3}
             handleShowMore={() => setActiveIndex(3)}
             handleNewSkill={handleNewSkill}
+            handleDelete={deleteSkill}
           />
         </div>
         <div className="resume">
           <header>
-            <h1>Jane Doe</h1>
+            <h1>{formData.fullName ? formData.fullName : "Jane Doe"}</h1>
             <h3>Web Developer</h3>
           </header>
           <aside>
